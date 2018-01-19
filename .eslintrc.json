@@ -1,0 +1,21 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["standard", "standard-jsx"],
+  "rules": {
+    "comma-dangle": ["error", "only-multiline"]
+  },
+  "overrides": [
+    {
+      "files": "*.test.js",
+      "env": {
+        "jest": true
+      }
+    },
+    {
+      "files": "src/registerServiceWorker.js",
+      "env": {
+        "browser": true
+      }
+    }
+  ]
+}
