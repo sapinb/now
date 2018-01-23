@@ -8,6 +8,11 @@ injectGlobal`
     box-sizing: border-box;
   }
 
+  html, body {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
   body {
     margin: 0;
     padding: 0;

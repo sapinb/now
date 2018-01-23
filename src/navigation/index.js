@@ -30,6 +30,7 @@ Other screens
 */
 
 import LoginStack from '../screens/LoginStack'
+import AppStack from '../screens/AppStack'
 
 const makeDummyComponent = name => () => <div>{name}</div>
 
@@ -37,6 +38,7 @@ const Navigation = () =>
   <Router>
     <Switch>
       <Route path='/(login|register)' component={LoginStack} />
+      <Route path='/app' component={AppStack} />
       <Redirect exact from='/' to='/login' />
       <Route component={makeDummyComponent(404)} />
     </Switch>

@@ -14,14 +14,15 @@ import colors from '../constants/colors'
 export const HEADER_HEIGHT_PX = 56
 
 const HeaderContainer = styled.div`
-  position: fixed; top: 0; left: 0; right: 0;
-  height: ${HEADER_HEIGHT_PX};
+  position: absolute; top: 0; left: 0; right: 0;
+  height: ${HEADER_HEIGHT_PX}px;
   display: flex;
   flex-direction: row;
   align-items: center;
   background-color: ${colors.orange};
 
   box-shadow: ${props => props.hidden ? 'none' : '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)'};
+  z-index: 2;
 
   transform: translate3d(0, ${props => props.hidden ? -HEADER_HEIGHT_PX : 0}px, 0);
 
@@ -100,7 +101,7 @@ export const Header = ({ hidden, onClickMenu = noop }) =>
     </LogoContainer>
 
     <IconsContainerLeft>
-      <MenuIconLink />
+      <MenuIconLink onClick={onClickMenu} />
     </IconsContainerLeft>
 
     <IconsContainerRight />

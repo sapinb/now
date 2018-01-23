@@ -1,4 +1,4 @@
-import { withProps } from 'recompose'
+import { withProps, defaultProps } from 'recompose'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { faUserCircle, faUnlock } from '@fortawesome/fontawesome-free-solid'
 import { faEnvelope } from '@fortawesome/fontawesome-free-regular'
@@ -36,3 +36,20 @@ export const CloseIcon = withProps({
   color: 'white',
   fontSize: '50px',
 })(Ionicon)
+
+const DrawerIcon = defaultProps({
+  color: 'rgba(255, 255, 255, 0.8)',
+  fontSize: '30px',
+})(Ionicon)
+
+export const NewsIcon = withProps({ icon: 'ios-list', fontSize: '40px' })(DrawerIcon)
+export const ChannelsIcon = withProps({ icon: 'ios-apps-outline' })(DrawerIcon)
+export const BookmarksIcon = withProps({ icon: 'ios-bookmark-outline' })(DrawerIcon)
+export const OverviewIcon = withProps({ icon: 'ios-analytics-outline' })(DrawerIcon)
+export const CalendarIcon = withProps({ icon: 'ios-calendar-outline' })(DrawerIcon)
+export const TimelineIcon = withProps({ icon: 'ios-time-outline' })(DrawerIcon)
+export const ProfileIcon = withProps({ icon: 'ios-contact-outline' })(DrawerIcon)
+export const WidgetsIcon = withProps({ icon: 'ios-aperture-outline' })(DrawerIcon)
+export const SettingsIcon = withProps({ icon: 'ios-switch-outline' })(DrawerIcon)
+export const ContactUsIcon = withProps({ icon: 'ios-mail-outline' })(DrawerIcon)
+export const TermsIcon = withProps({ icon: 'ios-reorder' })(DrawerIcon)
