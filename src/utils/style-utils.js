@@ -2,12 +2,17 @@ import { css } from 'styled-components'
 
 export const media = {
   forPhoneOnly: (...args) => css`
-    @media (max-width: 599px) {
+    @media (max-width: 767px) {
+      ${css(...args)}
+    }
+  `,
+  forTabletUp: (...args) => css`
+    @media (min-width: 768px) {
       ${css(...args)}
     }
   `,
   forTabletProtraitUp: (...args) => css`
-    @media (min-width: 600px) {
+    @media (min-width: 768px) {
       ${css(...args)}
     }
   `,
