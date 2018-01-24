@@ -94,7 +94,7 @@ const CloseLink = ({ ...props }) =>
     <CloseIcon />
   </CloseLinkComponent>
 
-export const Header = ({ hidden, onClickMenu = noop }) =>
+export const Header = ({ hidden, onClickMenu = noop, onClickClose = noop }) =>
   <HeaderContainer hidden={hidden}>
     <LogoContainer>
       <Logo />
@@ -104,7 +104,9 @@ export const Header = ({ hidden, onClickMenu = noop }) =>
       <MenuIconLink onClick={onClickMenu} />
     </IconsContainerLeft>
 
-    <IconsContainerRight />
+    <IconsContainerRight>
+      <CloseLink onClick={onClickClose} />
+    </IconsContainerRight>
   </HeaderContainer>
 
 const LoginHeaderContainer = HeaderContainer.extend`

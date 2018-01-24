@@ -53,3 +53,6 @@ export const WidgetsIcon = withProps({ icon: 'ios-aperture-outline' })(DrawerIco
 export const SettingsIcon = withProps({ icon: 'ios-switch-outline' })(DrawerIcon)
 export const ContactUsIcon = withProps({ icon: 'ios-mail-outline' })(DrawerIcon)
 export const TermsIcon = withProps({ icon: 'ios-reorder' })(DrawerIcon)
+
+export const ArticleSourceIcon = withProps({ icon: 'logo-rss', fontSize: '2em' })(Ionicon)
+export const ArticleTimeIcon = withProps({ icon: 'ios-time-outline', fontSize: '2em' })(Ionicon)

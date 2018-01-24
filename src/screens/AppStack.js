@@ -1,19 +1,24 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
 import { Header } from '../components/Header'
 import { Drawer, DRAWER_WIDTH_PX } from '../components/Drawer'
 import { RightDrawer, RIGHT_DRAWER_WIDTH_PX } from '../components/RightDrawer'
-import colors from '../constants/colors';
+import colors from '../constants/colors'
 
 const Container = styled.div`
   width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 `
 
 // div pushed by left drawer
 const InnerContainer = styled.div`
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+
   position: relative;
 
   transform: translate3d(${props => props.showDrawer ? DRAWER_WIDTH_PX : 0}px, 0, 0);
@@ -25,23 +30,53 @@ const InnerContainer = styled.div`
 // div pushed by right drawer
 const ContentContainer = styled.div`
   width: 100%;
-  min-height: 100vh;
-  position: relative;
+  height: 100vh;
+  overflow: hidden;
 
   transform: translate3d(${props => props.showRightDrawer ? -RIGHT_DRAWER_WIDTH_PX : 0}px, 0, 0);
 
   transition: transform 0.3s ease-in-out;
 `
 
+// Cause I need another wrapper just for a full screen dark overlay over contents when drawer is open
+const OverlayContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;  
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    background: ${colors.black};
+    opacity: ${props => props.showOverlay ? 0.6 : 0};
+    visibility: ${props => props.showOverlay ? 'visible' : 'hidden'};
+    transition: opacity 0.3s linear, visibility 0s ${props => props.showOverlay ? 0 : 0.3}s;
+    z-index: 1;
+  }
+
+  &::-webkit-scrollbar {
+    width: 2px;
+    background: transparent;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: ${colors.orange};
+  }
+`
+
 const DrawerOpenOverlay = styled.div`
   position: absolute;
   top: 0; bottom: 0; left: 0; right: 0;
   background: ${colors.black};
-  opacity: ${props => props.hide ? 0 : 0.5};
-  visibility: ${props => props.hide ? 'hidden' : 'visible'};
+  opacity: ${props => props.showOverlay ? 0.6 : 0};
+  visibility: ${props => props.showOverlay ? 'visible' : 'hidden'};
+  transition: opacity 0.3s linear, visibility 0s ${props => props.showOverlay ? 0 : 0.3}s;
 
   z-index: 1;
-  transition: opacity 0.3s linear;
 `
 
 class AppStack extends React.Component {
@@ -70,10 +105,15 @@ class AppStack extends React.Component {
       <Container>
         <Drawer show={showDrawer} />
         <InnerContainer showDrawer={showDrawer} showRightDrawer={showRightDrawer}>
-          <Header hidden={!showHeader} onClickMenu={this.toggleDrawer} />
+          <Header hidden={!showHeader} onClickMenu={this.toggleDrawer} onClickClose={this.toggleRightDrawer} />
           <RightDrawer show={showRightDrawer} />
           <ContentContainer showRightDrawer={showRightDrawer}>
-            <DrawerOpenOverlay hide={!(showDrawer || showRightDrawer)} onClick={this.hideDrawers} />
+            <OverlayContainer>
+              <Switch>
+                <Route component={require('./HomeScreen').default} />
+              </Switch>
+            </OverlayContainer>
+            <DrawerOpenOverlay showOverlay={showDrawer || showRightDrawer} onClick={this.hideDrawers} />
           </ContentContainer>
         </InnerContainer>
       </Container>
