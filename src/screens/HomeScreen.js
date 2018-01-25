@@ -37,18 +37,18 @@ class HomeScreen extends React.Component {
           right
         />
         <HalfArticle
-          image={images.arcticIce()}
-          title='Arctic sea ice extent hits record low for winter maximum'
-          source='CNN'
-          time='1h ago'
-          channel='ENVIRONMENT'
+          image={images.phone()}
+          title='New battery for smartphones can be charged in a minute'
+          source='Reuters'
+          time='6h ago'
+          channel='TECHNOLOGY'
         />
         <FullArticle
-          image={images.seaRock()}
-          title='Astronauts could land on Red Planet by 2039'
+          image={images.forestRacoon()}
+          title='How wild Animals live in the National Forest'
           source='SPACE.com'
           time='20m ago'
-          channel='SCIENCE'
+          channel='ENVIRONMENT'
         />
         <FullArticle
           image={images.seaRock()}
@@ -66,19 +66,20 @@ class HomeScreen extends React.Component {
           right
         />
         <HalfArticle
-          image={images.arcticIce()}
-          title='Arctic sea ice extent hits record low for winter maximum'
-          source='CNN'
-          time='1h ago'
-          channel='ENVIRONMENT'
+          image={images.phone()}
+          title='New battery for smartphones can be charged in a minute'
+          source='Reuters'
+          time='6h ago'
+          channel='TECHNOLOGY'
         />
         <FullArticle
-          image={images.seaRock()}
-          title='Astronauts could land on Red Planet by 2039'
+          image={images.forestRacoon()}
+          title='How wild Animals live in the National Forest'
           source='SPACE.com'
           time='20m ago'
-          channel='SCIENCE'
-        />      </Container>
+          channel='ENVIRONMENT'
+        />
+      </Container>
     )
   }
 }

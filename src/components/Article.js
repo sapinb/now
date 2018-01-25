@@ -122,7 +122,8 @@ const HalfArticleContainer = styled.div`
   `}
 
   ${media.forPhoneOnly`
-    min-height: 10em;
+    min-height: inherit;
+    height: inherit;
     border-bottom: 1px solid rgba(0,0,0,0.25);
   `}
 `
