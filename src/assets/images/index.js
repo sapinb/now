@@ -14,6 +14,7 @@ export default {
   narrowBuilding: () => require('./narrow-building.jpg'),
   personBack: () => require('./person-back.jpg'),
   phone: () => require('./phone.jpg'),
+  profile: () => require('./profile.jpg'),
   rocksFeet: () => require('./rocks-feet.jpg'),
   seaDevice: () => require('./sea-rock.jpg'),
   seaRock: () => require('./sea-rock.jpg'),

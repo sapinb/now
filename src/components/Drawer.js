@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import { Link } from './Link'
 import { HEADER_HEIGHT_PX } from './Header'
 
+import images from '../assets/images'
+
 import {
   CloseIcon,
   NewsIcon,
@@ -21,6 +23,7 @@ import {
 
 import colors from '../constants/colors'
 import { media } from '../utils/style-utils'
+import { noop } from '../utils/functions'
 
 export const DRAWER_WIDTH_PX = 300
 
@@ -29,13 +32,13 @@ const DRAWER_ITEM_HEIGHT_PX = 44
 const CloseLinkContainer = styled(Link)`
   height: ${HEADER_HEIGHT_PX}px;
   width: ${HEADER_HEIGHT_PX}px;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   margin: 0 10px;
 
-  ${media.forPhoneOnly`
-    display: none;
+  ${media.forDesktopUp`
+    display: flex;
   `}
 `
 
@@ -48,7 +51,7 @@ const DrawerContainer = styled.div`
 
   transition: transform 0.3s ease-in-out;
 
-  background: #F49373;
+  background: linear-gradient(0deg, #2F2A24, #F49373);
 `
 
 const ScrollableContainer = styled.div`
@@ -59,7 +62,6 @@ const ScrollableContainer = styled.div`
   overflow-y: auto;
 
   position: relative;
-  background: linear-gradient(0deg, #2F2A24, #F49373);
 `
 
 const DrawerItemContainer = styled(Link)`
@@ -91,8 +93,8 @@ const DrawerItemTitle = styled.div`
   font-size: 14px;
 `
 
-const DrawerItem = ({ Icon, title }) =>
-  <DrawerItemContainer>
+const DrawerItem = ({ Icon, title, to }) =>
+  <DrawerItemContainer to={to}>
     <DrawerItemIconContainer>
       <Icon />
     </DrawerItemIconContainer>
@@ -149,42 +151,29 @@ const LogoutProfileImage = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: white;
+  background: ${props => props.source ? `url(${props.source})` : 'white'};
+  background-position: center;
+  background-size: cover;
 `
 
-const LogoutItem = () =>
+const LogoutItem = ({ profileImage }) =>
   <LogoutContainer>
     <LogoutTextContainer>
-      <LogoutLink>LOG OUT</LogoutLink>
+      <LogoutLink to='/'>LOG OUT</LogoutLink>
       <LogoutName>Thomas Schnider</LogoutName>
     </LogoutTextContainer>
-    <LogoutProfileImage />
+    <LogoutProfileImage source={profileImage} />
   </LogoutContainer>
 
-const UpperGradient = styled.div`
-  background: linear-gradient(0deg, transparent, #F49373);
-  height: 20px;
-  position: absolute;
-  top: ${HEADER_HEIGHT_PX}px;
-  left: 0;
-  right: 0;
-  z-index: 1;
-
-  ${media.forPhoneOnly`
-    display: none;
-  `}
-`
-
-export const Drawer = ({ show }) =>
+export const Drawer = ({ show, onClickClose = noop }) =>
   <DrawerContainer show={show}>
     <CloseLinkContainer>
-      <CloseIcon />
+      <CloseIcon onClick={onClickClose} />
     </CloseLinkContainer>
-    <UpperGradient />
     <ScrollableContainer>
       <UpperSpacer />
-      <DrawerItem Icon={NewsIcon} title='news' />
-      <DrawerItem Icon={ChannelsIcon} title='channels' />
+      <DrawerItem Icon={NewsIcon} title='news' to='/news' />
+      <DrawerItem Icon={ChannelsIcon} title='channels' to='/channels' />
       <DrawerItem Icon={BookmarksIcon} title='bookmarks' />
       <DrawerItem Icon={OverviewIcon} title='overview' />
       <DrawerItem Icon={CalendarIcon} title='calendar' />
@@ -198,6 +187,6 @@ export const Drawer = ({ show }) =>
 
       <LowerSpacer />
 
-      <LogoutItem />
+      <LogoutItem profileImage={images.profile()} />
     </ScrollableContainer>
   </DrawerContainer>
