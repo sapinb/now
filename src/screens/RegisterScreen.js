@@ -177,7 +177,7 @@ class RegisterScreen extends React.Component {
           <EmailInput />
           <PasswordInput />
           <Spacer />
-          <ContinueButton />
+          <ContinueButton to='/news' />
           <BottomContainer>
             <BottomLink to='/terms-and-conditions'>Terms &amp; Conditions</BottomLink>
           </BottomContainer>

@@ -88,7 +88,7 @@ class LoginScreen extends React.Component {
         <UsernameInput />
         <PasswordInput />
         <SpacerAboveMobile />
-        <GetStartedButton />
+        <GetStartedButton to='/news' />
         <BottomContainer>
           <BottomLink to='/register'>Create Account</BottomLink>
           <BottomLink to='/help'>Need Help?</BottomLink>
