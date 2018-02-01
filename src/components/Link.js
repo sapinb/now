@@ -6,7 +6,11 @@ export const NoLink = styled.span`
   cursor: pointer;
 `
 
+const NoUnderlineLink = styled(RouterLink)`
+  text-decoration: none;
+`
+
 export const Link = ({ to = null, ...props }) =>
   to
-    ? <RouterLink to={to} {...props} />
+    ? <NoUnderlineLink to={to} {...props} />
     : <NoLink {...props} />
