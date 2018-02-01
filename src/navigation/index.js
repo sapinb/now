@@ -38,7 +38,7 @@ const Navigation = () =>
   <Router>
     <Switch>
       <Route path='/(login|register)' component={LoginStack} />
-      <Route path='/app' component={AppStack} />
+      <Route path='/(news|channels)' component={AppStack} />
       <Redirect exact from='/' to='/login' />
       <Route component={makeDummyComponent(404)} />
     </Switch>

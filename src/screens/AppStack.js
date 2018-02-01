@@ -86,6 +86,25 @@ class AppStack extends React.Component {
     showRightDrawer: false,
   }
 
+  componentWillMount () {
+    const { location: { pathname } } = this.props
+
+    this.handlePathBasedActions(pathname)
+  }
+
+  componentWillReceiveProps (nextProps) {
+    const { location: { pathname: nextPathname } } = nextProps
+    const { location: { pathname } } = this.props
+
+    if (nextPathname !== pathname) {
+      this.handlePathBasedActions(nextPathname)
+    }
+  }
+
+  handlePathBasedActions (pathname) {
+    this.hideDrawers()
+  }
+
   showDrawer = (showDrawer = true) => this.setState({ showDrawer })
   showRightDrawer = (showRightDrawer = true) => this.setState({ showRightDrawer })
 
@@ -103,14 +122,15 @@ class AppStack extends React.Component {
 
     return (
       <Container>
-        <Drawer show={showDrawer} />
+        <Drawer show={showDrawer} onClickClose={this.toggleDrawer} />
         <InnerContainer showDrawer={showDrawer} showRightDrawer={showRightDrawer}>
           <Header hidden={!showHeader} onClickMenu={this.toggleDrawer} onClickClose={this.toggleRightDrawer} />
           <RightDrawer show={showRightDrawer} />
           <ContentContainer showRightDrawer={showRightDrawer}>
             <OverlayContainer>
               <Switch>
-                <Route component={require('./HomeScreen').default} />
+                <Route path='/news' component={require('./HomeScreen').default} />
+                <Route path='/channels' component={require('./ChannelsScreen').default} />
               </Switch>
             </OverlayContainer>
             <DrawerOpenOverlay showOverlay={showDrawer || showRightDrawer} onClick={this.hideDrawers} />

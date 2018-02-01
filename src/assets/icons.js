@@ -56,3 +56,15 @@ export const TermsIcon = withProps({ icon: 'ios-reorder' })(DrawerIcon)
 
 export const ArticleSourceIcon = withProps({ icon: 'logo-rss', fontSize: '2em' })(Ionicon)
 export const ArticleTimeIcon = withProps({ icon: 'ios-time-outline', fontSize: '2em' })(Ionicon)
+
+export const MenuBookmarkIcon = withProps({
+  icon: 'ios-bookmark-outline',
+  color: 'white',
+  fontSize: '35px',
+})(Ionicon)
+
+export const MenuSearchIcon = withProps({
+  icon: 'ios-search-outline',
+  color: 'white',
+  fontSize: '35px',
+})(Ionicon)

@@ -21,6 +21,11 @@ export const media = {
       ${css(...args)}
     }
   `,
+  forTabletOnly: (...args) => css`
+    @media (min-width: 768px) and (max-width: 1199px) {
+      ${css(...args)}
+    }
+  `,
   forDesktopUp: (...args) => css`
   @media (min-width: 1200px) {
     ${css(...args)}

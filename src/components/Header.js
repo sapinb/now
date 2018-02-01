@@ -7,7 +7,7 @@ import { Link } from './Link'
 import { noop } from '../utils/functions'
 import { media } from '../utils/style-utils'
 
-import { MenuIcon, CloseIcon } from '../assets/icons'
+import { MenuIcon, CloseIcon, MenuBookmarkIcon, MenuSearchIcon } from '../assets/icons'
 import images from '../assets/images'
 import colors from '../constants/colors'
 
@@ -70,6 +70,8 @@ const IconLink = ({ Icon, ...props }) =>
   </IconLinkContainer>
 
 const MenuIconLink = withProps({ Icon: MenuIcon })(IconLink)
+const MenuBookmarkLink = withProps({ Icon: MenuBookmarkIcon })(IconLink)
+const MenuSearchLink = withProps({ Icon: MenuSearchIcon })(IconLink)
 
 const CloseLinkComponent = styled(Link)`
   height: ${HEADER_HEIGHT_PX}px;
@@ -94,7 +96,7 @@ const CloseLink = ({ ...props }) =>
     <CloseIcon />
   </CloseLinkComponent>
 
-export const Header = ({ hidden, onClickMenu = noop, onClickClose = noop }) =>
+export const Header = ({ hidden, onClickMenu = noop, onClickBookmark = noop }) =>
   <HeaderContainer hidden={hidden}>
     <LogoContainer>
       <Logo />
@@ -105,7 +107,8 @@ export const Header = ({ hidden, onClickMenu = noop, onClickClose = noop }) =>
     </IconsContainerLeft>
 
     <IconsContainerRight>
-      <CloseLink onClick={onClickClose} />
+      <MenuSearchLink />
+      <MenuBookmarkLink onClick={onClickBookmark} />
     </IconsContainerRight>
   </HeaderContainer>
 
