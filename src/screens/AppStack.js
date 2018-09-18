@@ -130,7 +130,8 @@ class AppStack extends React.Component {
             <OverlayContainer>
               <Switch>
                 <Route path='/news' component={require('./HomeScreen').default} />
-                <Route path='/channels' component={require('./ChannelsScreen').default} />
+                <Route exact path='/channels' component={require('./ChannelsScreen').default} />
+                <Route path='/channels/:channel' component={require('./ChannelStoriesScreen').default} />
               </Switch>
             </OverlayContainer>
             <DrawerOpenOverlay showOverlay={showDrawer || showRightDrawer} onClick={this.hideDrawers} />

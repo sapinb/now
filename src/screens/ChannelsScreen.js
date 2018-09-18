@@ -176,9 +176,9 @@ const ChannelTitleFollowing = styled.div`
   `}
 `
 
-const ChannelTitle = ({ title, following }) =>
+const ChannelTitle = ({ title, following, to }) =>
   <ChannelTitleContainer>
-    <ChannelTitleText>{title}</ChannelTitleText>
+    <ChannelTitleText to={to}>{title}</ChannelTitleText>
     <ChannelTitleFollowing>{following ? 'Following' : 'Follow'}</ChannelTitleFollowing>
   </ChannelTitleContainer>
 
@@ -293,7 +293,7 @@ class ChannelsScreen extends React.Component {
         <ChannelListConainer>
           {channels.map(channel => (
             <ChannelContainer key={channel.id} image={channel.image}>
-              <ChannelTitle title={channel.title} following={channel.following} />
+              <ChannelTitle title={channel.title} following={channel.following} to={`/channels/${channel.title}`} />
               <FollowersBar followers={channel.followers} />
             </ChannelContainer>
           ))}
